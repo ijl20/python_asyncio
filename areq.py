@@ -95,7 +95,8 @@ if __name__ == "__main__":
     import pathlib
     import sys
 
-    assert sys.version_info >= (3, 7), "Script requires Python 3.7+."
+    # Python 3.7
+    # assert sys.version_info >= (3, 7), "Script requires Python 3.7+."
     here = pathlib.Path(__file__).parent
 
     with open(here.joinpath("urls.txt")) as infile:
@@ -105,5 +106,10 @@ if __name__ == "__main__":
     with open(outpath, "w") as outfile:
         outfile.write("source_url\tparsed_url\n")
 
-    asyncio.run(bulk_crawl_and_write(file=outpath, urls=urls))
+    # Python 3.7
+    #asyncio.run(bulk_crawl_and_write(file=outpath, urls=urls))
+
+    # Python 3.6
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(bulk_crawl_and_write(file=outpath, urls=urls))
 
